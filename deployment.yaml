@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-auth-service
+  labels:
+    app: todo-auth-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-app
+  template:
+    metadata:
+      labels:
+        app: todo-auth-service
+    spec:
+      containers:
+        - name: todo-auth-service
+          image: todo-auth-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
